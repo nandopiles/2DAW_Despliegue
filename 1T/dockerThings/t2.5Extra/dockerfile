@@ -1,0 +1,14 @@
+FROM ubuntu
+
+# do an update and then install the command for unzipping
+RUN apt update
+RUN apt install unzip
+
+# conf the work directory of the docker to /files directory
+WORKDIR /files
+
+# copy all the files with the .zip extension to the work directory
+COPY *.zip .
+
+# unzips the files. With RUN doesn't work
+CMD unzip *.zip

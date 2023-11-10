@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  web:
+    build: ./nginx #where's the img for the docker
+    ports:
+      - 8080:80 # port that will be used
+    volumes:
+      - ./public:/usr/share/nginx/html # where's the index.html for load the page

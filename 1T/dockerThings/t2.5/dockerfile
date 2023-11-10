@@ -1,0 +1,13 @@
+# the lastest version of the img "nginx" will be used for the base of the new one
+FROM nginx
+
+# change the name of the index file to other name, so now we can run the proper index file
+RUN mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index2.html
+# do and echo saying the indicated text
+RUN echo "[+] Welcome to Nando's container manin"
+
+# copy ur index.html to the remote directory of the web server
+COPY ./index.html /usr/share/nginx/html/
+
+# expose the port that will be used (only informs)
+EXPOSE 80

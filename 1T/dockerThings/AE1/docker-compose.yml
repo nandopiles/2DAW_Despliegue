@@ -1,0 +1,41 @@
+version: "3"
+services:
+    db:
+        image: mysql:latest
+        ports:
+            - 3306:3306
+        #Habililta autenticación con contraseña desde mysql
+        command: --default-authentication-plugin=mysql_native_password
+        #Variables de entorno
+        environment:
+            MYSQL_DATABASE: ae1_despliegue
+            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root
+        volumes:
+            #sincronización bbdd
+            - ./db_data/:/docker-entrypoint-initdb.d
+        networks:
+            - default
+    www:
+        build: .
+        ports:
+            - 80:80
+        volumes:
+            - ./index.php:/var/www/html/index.php
+        #link con el contenedor de la bbdd
+        links:
+            - db
+        #red de conexión de los contenedores
+        networks:
+            - default
+    phpmyadmin:
+        image: phpmyadmin
+        #link con el contenedor de la bbdd
+        links:
+            - db
+        ports:
+            - 8000:80
+        environment:
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root

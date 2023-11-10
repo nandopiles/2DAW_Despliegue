@@ -1,0 +1,2 @@
+# Nginx img
+FROM nginx
