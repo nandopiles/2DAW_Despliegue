@@ -13,15 +13,15 @@ services:
             MYSQL_ROOT_PASSWORD: root
         volumes:
             #sincronización bbdd
-            - ./db_data/:/docker-entrypoint-initdb.d
+            - ./db/:/docker-entrypoint-initdb.d
         networks:
             - default
     www:
-        build: .
+        build: ./php/
         ports:
             - 80:80
         volumes:
-            - ./index.php:/var/www/html/index.php
+            - ./public/:/var/www/html/
         #link con el contenedor de la bbdd
         links:
             - db
