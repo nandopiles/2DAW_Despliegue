@@ -58,16 +58,6 @@ class Database
         return self::$instance->getLink();
     }
 
-    /**
-     * Closes the connection with the database.
-     *
-     * @return void
-     */
-    private function closeConnection()
-    {
-        $this->setLink(null);
-    }
-
 
 
     /**
