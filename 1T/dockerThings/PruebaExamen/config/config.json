@@ -1,0 +1,6 @@
+{
+    "host": "172.17.0.3",
+    "dbname": "pruebadb",
+    "username": "root",
+    "password": "root"
+}
